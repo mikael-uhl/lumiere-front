@@ -1,0 +1,126 @@
+.container {
+  width: 300px;
+  background-color: #0e0d14;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 1;
+}
+
+.toggle_menu {
+  display: none;
+}
+
+.link_container {
+  display: flex;
+  padding: 10px 15px;
+  gap: 10px;
+  flex-direction: column;
+  transition: 0.3s ease;
+  width: 100%;
+}
+
+.initials {
+  display: none;
+}
+
+.link {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  border-radius: 5px;
+  padding-block: 10px;
+  padding-inline: 10px;
+}
+
+.link:hover, .active {
+  background-color: white;
+  color: #0e0d14;
+}
+
+
+@media (max-width: 720px) {
+  .container {
+    width: 100px;
+    justify-content: center;
+  }
+
+  .container.active_menu {
+    width: 300px;
+  }
+
+  .link_container {
+    padding: 10px;
+    padding-top: 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container.active_menu .link_container {
+    padding: 20px 10px;
+    padding-top: 0;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .toggle_menu {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    transition: 0.3s ease;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+
+  .container.active_menu .toggle_menu {
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 20px;
+    transition: 0.3s ease;
+  }
+
+  .initials {
+    display: inline;
+  }
+
+  .fullText {
+    display: none;
+  }
+
+  .container.active_menu .initials {
+    display: none;
+  }
+
+  .container.active_menu .fullText {
+    display: block;
+  }
+
+  .link {
+    justify-content: center;
+    text-align: center;
+    padding-block: 10px;
+    padding-inline: 0;
+  }
+
+  .container.active_menu .link {
+    justify-content: flex-end;
+    padding-block: 10px;
+    padding-inline: 10px;
+    text-align: right;
+  }
+}

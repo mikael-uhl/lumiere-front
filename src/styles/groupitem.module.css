@@ -1,0 +1,39 @@
+.container {
+  padding: 30px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.group_name {
+  font-size: 20px;
+  padding-block: 10px;
+  font-weight: 700;
+}
+
+.content_lists {
+  font-size: 14px;
+  color: antiquewhite;
+  padding-top: 10px;
+  font-weight: 600;
+}
+
+.content_queue {
+  font-size: 12px;
+  color: antiquewhite;
+  padding-top: 10px;
+  font-weight: 500;
+}
+
+.profile_image {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

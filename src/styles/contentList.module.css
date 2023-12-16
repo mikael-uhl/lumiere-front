@@ -1,0 +1,35 @@
+.container {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  padding-top: 10px;
+  border-radius: 10px;
+}
+
+.title {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+.content p {
+  text-align: center;
+}
+
+.content button {
+  background-color: green;
+  outline: none;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}

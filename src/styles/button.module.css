@@ -1,12 +1,12 @@
 .button {
-    background: blue;
-    border-radius: 10px;
-    width: 70px;
-    border: none;
-    outline: none;
-    cursor: pointer;
+  background: blue;
+  border-radius: 10px;
+  width: 70px;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .button:hover {
-    background: green;
+  background: green;
 }

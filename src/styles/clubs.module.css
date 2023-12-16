@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  position: relative;
+  flex: 1;
+  gap: 20px;
+}
+
+.group_container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-y: auto;
+  max-height: calc(100vh - 80px);
+  padding-right: var(--individual-padding);
+}
+
+.group_info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.group_name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  padding-block: 15px;
+}
+
+.profile_image {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
