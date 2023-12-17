@@ -43,7 +43,6 @@ export default async function Clubs({
 }: {
   params: { clubId: string };
 }) {
-  // const session = await getSession();
   const { clubId } = params;
   const club: Group = await getClub(clubId);
   const clubs: Group[] = await getClubs();
@@ -68,7 +67,10 @@ export default async function Clubs({
             </div>
           </div>
           <hr />
-          <ContentQueueItem contentQueue={club.ContentQueue} />
+          <ContentQueueItem
+            groupId={club.group_id}
+            contentQueue={club.ContentQueue}
+          />
           {club.ContentLists.map((contentList) => (
             <div key={contentList.list_id}>
               <ContentListItem contentList={contentList} />

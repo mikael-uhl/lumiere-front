@@ -40,7 +40,6 @@ const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       user && (token.user = user);
 
-      // console.log("Token:", token);
       return token;
     },
     async session({ session, token }) {
