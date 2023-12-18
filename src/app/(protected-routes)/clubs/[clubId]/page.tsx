@@ -7,6 +7,7 @@ import styles from "@/styles/clubs.module.css";
 import Sidebar from "@/components/Sidebar";
 import ContentListItem from "@/components/ContentListItem";
 import ContentQueueItem from "@/components/ContentQueueItem";
+import DeleteClub from "@/components/DeleteClub";
 
 type MetadataProps = {
   params: { clubId: string };
@@ -43,16 +44,28 @@ export default async function Clubs({
 }: {
   params: { clubId: string };
 }) {
+  const session = await getServerSession(authOptions);
   const { clubId } = params;
   const club: Group = await getClub(clubId);
   const clubs: Group[] = await getClubs();
 
+  const me = club.Users.filter((user) => {
+    return user.user_id == session?.user.user_id;
+  })[0];
+
   return (
     <div className={styles.container}>
-      <Sidebar clubs={clubs} />
+      <Sidebar
+        clubs={clubs}
+        clubId={club.group_id}
+        userId={session?.user.user_id}
+      />
       <div className={styles.group_container}>
         <div className={styles.group_info}>
-          <h1 className={styles.group_name}>{club.group_name}</h1>
+          <div className={styles.header}>
+            <h1 className={styles.group_name}>{club.group_name}</h1>
+            <DeleteClub clubId={club.group_id} />
+          </div>
           <div className={styles.header}>
             <p>Membros:</p>
             <div>
@@ -73,7 +86,10 @@ export default async function Clubs({
           />
           {club.ContentLists.map((contentList) => (
             <div key={contentList.list_id}>
-              <ContentListItem contentList={contentList} />
+              <ContentListItem
+                contentList={contentList}
+                permissions={me.GroupMember.permissions}
+              />
             </div>
           ))}
         </div>

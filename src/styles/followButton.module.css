@@ -1,0 +1,25 @@
+.follow {
+  width: 200px;
+  background-color: gray;
+  height: 30px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.following {
+  width: 200px;
+  background-color: green;
+  height: 30px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.unfollow {
+  background-color: orangered;
+}

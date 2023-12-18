@@ -50,5 +50,9 @@ export async function authorizedFetch(
     return [];
   }
 
+  if (options.method == "DELETE") {
+    return [];
+  }
+
   return response.json();
 }

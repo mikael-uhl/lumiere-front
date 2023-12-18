@@ -40,3 +40,33 @@
   align-items: center;
 }
 
+.delete {
+  color: rgb(255, 78, 78);
+  cursor: pointer;
+}
+
+.delete_container {
+  width: 400px;
+  max-width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.delete_container button {
+  background-color: red;
+  outline: none;
+  border: none;
+  padding: 5px;
+  width: 80px;
+  border-radius: 10px;
+  align-self: center;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.delete_container button:hover {
+  background-color: rgb(131, 0, 0);
+  font-weight: 800;
+}

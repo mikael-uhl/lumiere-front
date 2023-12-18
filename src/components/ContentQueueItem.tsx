@@ -31,9 +31,9 @@ export default function ContentQueueItem({
       <div className={styles.content}>
         {contentQueue ? (
           contentQueue.ContentItems.length > 0 ? (
-            `Possui ${contentQueue.ContentItems.length} itens de conteúdo!`
+            <p>Possui {contentQueue.ContentItems.length} itens de conteúdo!</p>
           ) : (
-            "Ainda não possui conteúdo!"
+            <p>Ainda não possui conteúdo!</p>
           )
         ) : (
           <>

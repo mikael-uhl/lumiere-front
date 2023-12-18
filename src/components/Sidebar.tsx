@@ -7,14 +7,23 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import KeyboardDoubleArrowRightRoundedIcon from "@mui/icons-material/KeyboardDoubleArrowRightRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import { UUID } from "crypto";
+import { CreateClub } from "./CreateClub";
 
 const extractInitials = (text: string) =>
   text
     .split(/\s+/)
-    .map((word) => word.charAt(0).toUpperCase())
+    .map((word) => word.charAt(0))
     .join("");
 
-export default function Sidebar({ clubs }: { clubs: Group[] }) {
+export default function Sidebar({
+  clubs,
+  userId,
+}: {
+  clubs: Group[];
+  clubId: UUID;
+  userId?: UUID;
+}) {
   const [active, setActive] = useState<boolean>(false);
   const PathNameId = usePathname().split("/").pop();
 
@@ -54,6 +63,7 @@ export default function Sidebar({ clubs }: { clubs: Group[] }) {
             <span className={styles.fullText}>{club.group_name}</span>
           </Link>
         ))}
+        <CreateClub userId={userId} />
       </nav>
     </div>
   );

@@ -11,6 +11,13 @@ export type ContentItem = {
   queue_id: UUID;
 };
 
+export type GroupMember = {
+  member_id: UUID;
+  permissions: "read" | "read-write";
+  user_id: UUID;
+  group_id: UUID;
+};
+
 export type ContentList = {
   list_id: UUID;
   list_name: string;
@@ -27,12 +34,7 @@ export type ContentQueue = {
 export type Group = {
   group_id: UUID;
   group_name: string;
-  GroupMember: {
-    member_id: UUID;
-    permissions: "read" | "read-write";
-    user_id: UUID;
-    group_id: UUID;
-  };
+  GroupMember: GroupMember;
   ContentLists: ContentList[];
   ContentQueue: ContentQueue;
   Users: User[];
@@ -48,6 +50,7 @@ export type User = {
   phone_number: String;
   profile_image_url: String;
   bio: String;
+  GroupMember: GroupMember;
 };
 
 export type NavLink = {

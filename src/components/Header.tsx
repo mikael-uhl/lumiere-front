@@ -10,20 +10,21 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useState, useEffect } from "react";
 import { Session } from "next-auth";
 
-const headerGuestLinks: NavLink[] = [
-  { displayName: "Entrar", path: "/login" },
-  { displayName: "Criar Conta", path: "/register" },
-];
-
-const headerLoggedInLinks: NavLink[] = [
-  { displayName: "Perfil", path: "/profile" },
-  { displayName: "Usuários", path: "/users" },
-  { displayName: "Clubes", path: "/clubs" },
-];
-
 export default function Header({ session }: { session: Session | null }) {
   const [active, setActive] = useState<boolean>(false);
   const PathName = usePathname();
+
+  const headerGuestLinks: NavLink[] = [
+    { displayName: "Entrar", path: "/login" },
+    { displayName: "Criar Conta", path: "/register" },
+  ];
+
+  const headerLoggedInLinks: NavLink[] = [
+    { displayName: "Perfil", path: `/${session?.user.username}` },
+    { displayName: "Usuários", path: "/users" },
+    { displayName: "Clubes", path: "/clubs" },
+  ];
+
   const linksToUse = session ? headerLoggedInLinks : headerGuestLinks;
 
   useEffect(() => {

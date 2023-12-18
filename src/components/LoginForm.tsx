@@ -36,6 +36,7 @@ export default function LoginForm() {
         type={"email"}
         placeholder={"Email"}
         onChange={(e) => setEmail(e.target.value)}
+        autoFocus
         required
       />
       <input

@@ -43,3 +43,25 @@
   width: 100%;
   border-bottom: none;
 }
+
+.add_container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* padding-top: 10px; */
+}
+
+.add {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  color: gray;
+  cursor: pointer;
+  user-select: none;
+  transition: .3s;
+}
+
+.add:hover {
+  color: white;
+}

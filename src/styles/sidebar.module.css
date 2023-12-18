@@ -52,6 +52,11 @@
   color: #0e0d14;
 }
 
+.add {
+  justify-content: center;
+  cursor: pointer;
+}
+
 
 @media (max-width: 720px) {
   .container {
