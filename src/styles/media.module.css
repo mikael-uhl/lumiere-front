@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  gap: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #848484;
+}
+
+.image {
+  height: 80px;
+}
+
+.media_info {
+  padding-block: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.original_title {
+  font-style: italic;
+  color: #848484;
+}
+
+@media (max-width: 720px) {
+  .title {
+    font-size: 16px;
+  }
+}
+

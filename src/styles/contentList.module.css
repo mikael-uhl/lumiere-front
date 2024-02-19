@@ -44,11 +44,14 @@
   border-bottom: none;
 }
 
+.empty {
+  padding-bottom: 10px;
+}
+
 .add_container {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  /* padding-top: 10px; */
 }
 
 .add {
@@ -60,8 +63,45 @@
   cursor: pointer;
   user-select: none;
   transition: .3s;
+  font-size: 16px;
 }
 
 .add:hover {
   color: white;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 40px;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.share {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  gap: 5px;
+  color: gray;
+  cursor: pointer;
+  user-select: none;
+  transition: .3s;
+  font-size: 16px;
+}
+
+.share:hover {
+  color: white;
+}
+
+@media (max-width: 950px) {
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
 }

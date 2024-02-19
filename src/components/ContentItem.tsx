@@ -32,8 +32,7 @@ export default function ContentItems({
   const handleSelect = async () => {
     const updatedCompleted = !completed;
     setCompleted(updatedCompleted);
-    const updated = await updateItem(contentItem.item_id, updatedCompleted);
-    console.log(updated);
+    await updateItem(contentItem.item_id, updatedCompleted);
   };
 
   return (
@@ -45,7 +44,9 @@ export default function ContentItems({
           <RadioButtonUncheckedRoundedIcon />
         )}
       </div>
-      <div>{contentItem.title}</div>
+      <div>
+        {contentItem.title} ({contentItem.year})
+      </div>
     </div>
   );
 }

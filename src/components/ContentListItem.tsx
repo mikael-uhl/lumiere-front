@@ -4,6 +4,7 @@ import ContentItems from "./ContentItem";
 import { authorizedFetch } from "@/utils/authorizedMethods";
 import { UUID } from "crypto";
 import { AddContentItem } from "./AddContentItem";
+import ShareContentList from "./ShareContentList";
 
 async function getItems(contentListId: UUID) {
   return authorizedFetch(
@@ -27,22 +28,29 @@ export default async function ContentListItem({
     <>
       <div className={styles.container}>
         <h3 className={styles.title}>{contentList.list_name}</h3>
-        {contentItems.length === 0 ? (
-          <div className={styles.content}>Ainda não possui conteúdo!</div>
-        ) : (
-          <div className={styles.content}>
-            {contentItems.map((contentItem) => (
+        <div className={styles.content}>
+          {contentItems.length === 0 ? (
+            <p className={styles.empty}>Ainda não possui programas!</p>
+          ) : (
+            contentItems.map((contentItem) => (
               <div className={styles.item} key={contentItem.item_id}>
                 <ContentItems contentItem={contentItem} />
               </div>
-            ))}
-          </div>
-        )}
-        {permissions === "read-write" && (
-          <div className={styles.add_container}>
-            <AddContentItem listId={contentList.list_id} />
-          </div>
-        )}
+            ))
+          )}
+        </div>
+        <div className={styles.buttons}>
+          <ShareContentList
+            contentItems={contentItems}
+            contentList={contentList}
+          />
+
+          {permissions === "read-write" && (
+            <div className={styles.add_container}>
+              <AddContentItem listId={contentList.list_id} />
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

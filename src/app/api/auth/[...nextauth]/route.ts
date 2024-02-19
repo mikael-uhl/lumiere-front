@@ -1,7 +1,38 @@
+import { UUID } from "crypto";
+import dayjs from "dayjs";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-const tokenExpirationTime = 1 * 60 * 60;
+const tokenExpirationTime = 24 * 60 * 60;
+
+async function refreshAccessToken(token: {
+  refreshToken: { refresh_token_id: UUID };
+}) {
+  try {
+    const response = await fetch(`${process.env.API_URL}/auth/refresh-token`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        refreshTokenId: token.refreshToken.refresh_token_id,
+      }),
+    });
+
+    const refreshedTokens = await response.json();
+
+    if (!response.ok) {
+      throw refreshedTokens;
+    }
+
+    return refreshedTokens;
+  } catch (error) {
+    return {
+      ...token,
+      error: "RefreshAccessTokenError",
+    };
+  }
+}
 
 const authOptions: NextAuthOptions = {
   providers: [
@@ -40,6 +71,9 @@ const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       user && (token.user = user);
 
+      if (dayjs().isAfter(dayjs.unix(token.user.user.expirationTime))) {
+        token.user = await refreshAccessToken(token.user);
+      }
       return token;
     },
     async session({ session, token }) {

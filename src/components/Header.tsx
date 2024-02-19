@@ -21,7 +21,6 @@ export default function Header({ session }: { session: Session | null }) {
 
   const headerLoggedInLinks: NavLink[] = [
     { displayName: "Perfil", path: `/${session?.user.username}` },
-    { displayName: "Usuários", path: "/users" },
     { displayName: "Clubes", path: "/clubs" },
   ];
 

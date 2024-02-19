@@ -27,3 +27,18 @@
   text-align: center;
   cursor: pointer;
 }
+
+.modal_container {
+  width: 400px;
+  max-width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Modal from "@/components/Modal";
-import NewContentItem from "@/components/NewContentItem";
+import NewContentItem from "@/components/NewContentItem2";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import styles from "@/styles/contentList.module.css";
 import { UUID } from "crypto";
@@ -21,7 +21,7 @@ export function AddContentItem({ listId }: { listId: UUID }) {
   return (
     <>
       <Modal isVisible={isVisible} title="Adicionar item" onClose={handleClose}>
-        <NewContentItem contentListId={listId} />
+        <NewContentItem contentListId={listId} onClose={handleClose} />
       </Modal>
       <div className={styles.add} onClick={handleOpen}>
         <AddCircleRoundedIcon /> Adicionar item

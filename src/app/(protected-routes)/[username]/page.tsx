@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { authorizedFetch } from "@/utils/authorizedMethods";
@@ -7,6 +6,9 @@ import { Group, User } from "@/utils/types";
 import ButtonLogout from "@/components/ButtonLogout";
 import { UUID } from "crypto";
 import FollowButton from "@/components/FollowButton";
+import ProfileImage from "@/components/ProfileImage";
+import Link from "next/link";
+import NotFound from "@/app/not-found";
 
 type MetadataProps = {
   params: { username: string };
@@ -48,8 +50,6 @@ export async function generateMetadata({ params }: MetadataProps) {
   };
 }
 
-const API_URL = process.env.API_URL;
-
 export default async function Profile({
   params,
 }: {
@@ -61,9 +61,9 @@ export default async function Profile({
   const followers: User[] = await getFollowers(user.user_id);
   const following: User[] = await getFollowing(user.user_id);
   const clubs: Group[] = await getClubs(user.user_id);
-  const profileImageUrl = user?.profile_image_url
-    ? `${API_URL}/pictures/${user?.profile_image_url}`
-    : "/user.png";
+
+  if (user.error) return <NotFound />;
+
   const me = session?.user;
   const itsMe = me?.user_id == user.user_id;
   const amIFollowing = followers.some(
@@ -74,16 +74,16 @@ export default async function Profile({
     <div className={`${styles.container} main`}>
       <div className={styles.profile_info_container}>
         <div className={styles.profile_info}>
-          <img
-            alt="Foto de perfil"
-            src={profileImageUrl}
-            className={styles.profile_image}
-          />
+          <ProfileImage user={user} imageSize={100} tooltip={false} />
           <div className={styles.name_follow}>
             <div className={styles.user_name}>
               {user?.first_name} {user?.last_name}
             </div>
-            {!itsMe && (
+            {itsMe ? (
+              <Link href="/settings">
+                <button className={styles.edit_profile}>Editar Perfil</button>
+              </Link>
+            ) : (
               <FollowButton
                 userId={user.user_id}
                 loggedUserId={session?.user.user_id}

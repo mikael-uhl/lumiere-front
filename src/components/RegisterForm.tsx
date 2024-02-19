@@ -1,9 +1,10 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { SyntheticEvent, useState } from "react";
+import { ChangeEvent, SyntheticEvent, useState } from "react";
 import styles from "@/styles/login.module.css";
 import { authorizedFetch } from "@/utils/authorizedMethods";
+import FormInput from "./FormInput";
 
 async function createUser(body: object) {
   const options = {
@@ -20,28 +21,28 @@ async function createUser(body: object) {
 }
 
 export default function RegisterForm() {
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [formUser, setFormUser] = useState({
+    first_name: "",
+    last_name: "",
+    date_of_birth: "",
+    username: "",
+    email: "",
+    password: "",
+  });
 
   const router = useRouter();
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setFormUser({
+      ...formUser,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   async function handleSubmit(event: SyntheticEvent) {
     event.preventDefault();
 
-    const body = {
-      first_name: firstName,
-      last_name: lastName,
-      username,
-      email,
-      password,
-    };
-
-    const newUser = await createUser(body);
-
-    console.log("Usuário criado com sucesso: ", newUser);
+    await createUser(formUser);
 
     router.replace("/login");
     router.refresh();
@@ -49,46 +50,56 @@ export default function RegisterForm() {
 
   return (
     <form className={styles.form_container} onSubmit={handleSubmit}>
-      <input
-        className={styles.text_input}
+      <FormInput
         type={"text"}
-        placeholder={"Nome"}
-        onChange={(e) => setFirstName(e.target.value)}
+        name={"first_name"}
+        title={"Nome"}
+        onChange={handleChange}
         required
       />
-      <input
-        className={styles.text_input}
+      <FormInput
         type={"text"}
-        placeholder={"Sobrenome"}
-        onChange={(e) => setLastName(e.target.value)}
+        name={"last_name"}
+        title={"Sobrenome"}
+        onChange={handleChange}
         required
       />
-      <input
-        className={styles.text_input}
+      <FormInput
+        type={"date"}
+        name={"date_of_birth"}
+        title={"Data de Nascimento"}
+        onChange={handleChange}
+        required
+      />
+      <FormInput
         type={"email"}
-        placeholder={"Endereço de e-mail"}
-        onChange={(e) => setEmail(e.target.value)}
+        name={"email"}
+        title={"Endereço de e-mail"}
+        onChange={handleChange}
         required
       />
-      <input
-        className={styles.text_input}
+      <FormInput
         type={"text"}
-        placeholder={"Nome de usuário"}
-        onChange={(e) => setUsername(e.target.value)}
+        name={"username"}
+        title={"Nome de usuário"}
+        onChange={handleChange}
         required
       />
-      <input
-        className={styles.text_input}
+      <FormInput
         type={"password"}
-        placeholder={"Senha"}
-        onChange={(e) => setPassword(e.target.value)}
+        name={"password"}
+        title={"Senha"}
+        onChange={handleChange}
         required
       />
-      <input
-        className={styles.text_input}
-        type={"submit"}
-        value={"Criar Usuário"}
+      <FormInput
+        type={"password"}
+        name={"confirm_password"}
+        title={"Confirmar senha"}
+        onChange={handleChange}
+        required
       />
+      <FormInput type={"submit"} value={"Criar Usuário"} />
     </form>
   );
 }

@@ -33,7 +33,7 @@ export default function ContentQueueItem({
           contentQueue.ContentItems.length > 0 ? (
             <p>Possui {contentQueue.ContentItems.length} itens de conteúdo!</p>
           ) : (
-            <p>Ainda não possui conteúdo!</p>
+            <p>Ainda não possui programas!</p>
           )
         ) : (
           <>

@@ -25,3 +25,33 @@
   cursor: pointer;
   border: none;
 }
+
+.media_list {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  height: 300px;
+  overflow-y: auto;
+}
+
+.options {
+  display: flex;
+  justify-content: space-around;
+}
+
+.options label {
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.clear_button {
+  cursor: pointer;
+  background-color: rgba(136, 8, 8, 0.750);
+  border: none;
+  border-radius: 5px;
+}
+
+.clear_button:hover {
+  background-color: rgba(136, 8, 8, 0.850);
+}

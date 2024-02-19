@@ -17,8 +17,10 @@ async function createContentItem(body: object) {
 
 export default function NewContentItem({
   contentListId,
+  onClose,
 }: {
   contentListId: UUID;
+  onClose?: any;
 }) {
   const router = useRouter();
   const [title, setTitle] = useState<string>("");
@@ -29,6 +31,7 @@ export default function NewContentItem({
     event.preventDefault();
 
     await createContentItem({ title, year, genre, list_id: contentListId });
+    onClose();
     router.refresh();
   }
 

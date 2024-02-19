@@ -4,6 +4,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { SyntheticEvent, useState } from "react";
 import styles from "@/styles/login.module.css";
+import FormInput from "./FormInput";
 
 export default function LoginForm() {
   const [email, setEmail] = useState<string>("");
@@ -31,22 +32,20 @@ export default function LoginForm() {
 
   return (
     <form className={styles.form_container} onSubmit={handleSubmit}>
-      <input
-        className={styles.text_input}
+      <FormInput
         type={"email"}
         placeholder={"Email"}
         onChange={(e) => setEmail(e.target.value)}
         autoFocus
         required
       />
-      <input
-        className={styles.text_input}
+      <FormInput
         type={"password"}
         placeholder={"Senha"}
         onChange={(e) => setPassword(e.target.value)}
         required
       />
-      <input className={styles.text_input} type={"submit"} value={"Entrar"} />
+      <FormInput type={"submit"} value={"Entrar"} />
     </form>
   );
 }

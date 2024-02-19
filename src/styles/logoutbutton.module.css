@@ -1,10 +1,10 @@
 .button {
-  background-color: rgba(161, 0, 0, 0.486);
+  background-color: rgb(109, 0, 0);
   width: 300px;
   max-width: 80%;
   color: white;
   outline: none;
-  border: 1px solid rgba(255, 255, 255, .3);
+  border: 1px solid rgba(255, 255, 255, .2);
   height: 30px;
   border-radius: 10px;
   cursor: pointer;

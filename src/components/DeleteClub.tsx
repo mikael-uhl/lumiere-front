@@ -7,6 +7,7 @@ import { UUID } from "crypto";
 import Modal from "./Modal";
 import { authorizedFetch } from "@/utils/authorizedMethods";
 import { useRouter } from "next/navigation";
+import { Tooltip } from "@mui/material";
 
 async function deleteClub(clubId: UUID) {
   authorizedFetch(`groups/${clubId}`, { method: "DELETE" });
@@ -38,7 +39,9 @@ export default function DeleteClub({ clubId }: { clubId: UUID }) {
         </div>
       </Modal>
       <span className={styles.delete} onClick={handleOpen}>
-        <DeleteRoundedIcon />
+        <Tooltip title="Deletar clube" placement="left">
+          <DeleteRoundedIcon />
+        </Tooltip>
       </span>
     </>
   );

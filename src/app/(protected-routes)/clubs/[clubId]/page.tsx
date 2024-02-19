@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { authorizedFetch } from "@/utils/authorizedMethods";
@@ -8,6 +7,7 @@ import Sidebar from "@/components/Sidebar";
 import ContentListItem from "@/components/ContentListItem";
 import ContentQueueItem from "@/components/ContentQueueItem";
 import DeleteClub from "@/components/DeleteClub";
+import ProfileImage from "@/components/ProfileImage";
 
 type MetadataProps = {
   params: { clubId: string };
@@ -32,12 +32,12 @@ export async function generateMetadata({ params }: MetadataProps) {
   const clubId = params.clubId;
   const club: Group = await getClub(clubId);
 
-  return {
-    title: `Clube ${club.group_name}`,
-  };
+  if (club.group_id) {
+    return {
+      title: `Clube ${club.group_name}`,
+    };
+  }
 }
-
-const API_URL = process.env.API_URL;
 
 export default async function Clubs({
   params,
@@ -70,12 +70,7 @@ export default async function Clubs({
             <p>Membros:</p>
             <div>
               {club.Users.map((user) => (
-                <img
-                  key={user.user_id}
-                  src={`${API_URL}/pictures/${user.profile_image_url}`}
-                  className={styles.profile_image}
-                  alt={`Foto de perfil de ${user.username}`}
-                />
+                <ProfileImage key={user.user_id} user={user} imageSize={30} />
               ))}
             </div>
           </div>

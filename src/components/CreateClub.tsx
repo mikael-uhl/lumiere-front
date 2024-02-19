@@ -6,6 +6,7 @@ import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import styles from "@/styles/sidebar.module.css";
 import { UUID } from "crypto";
 import NewClub from "./NewClub";
+import { Tooltip } from "@mui/material";
 
 export function CreateClub({ userId }: { userId?: UUID }) {
   const [isVisible, setVisible] = useState<boolean>(false);
@@ -23,9 +24,11 @@ export function CreateClub({ userId }: { userId?: UUID }) {
       <Modal isVisible={isVisible} title="Criar clube" onClose={handleClose}>
         <NewClub userId={userId} />
       </Modal>
-      <div className={`${styles.link} ${styles.add}`} onClick={handleOpen}>
-        <AddCircleRoundedIcon />
-      </div>
+      <Tooltip title="Criar clube" followCursor>
+        <div className={`${styles.link} ${styles.add}`} onClick={handleOpen}>
+          <AddCircleRoundedIcon />
+        </div>
+      </Tooltip>
     </>
   );
 }

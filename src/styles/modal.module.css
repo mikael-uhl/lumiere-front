@@ -16,8 +16,10 @@
   flex-direction: column;
   background-color: white;
   max-width: 80%;
+  max-height: 80%;
   color: black;
   border-radius: 10px;
+  overflow-y: auto;
 }
 
 .header {

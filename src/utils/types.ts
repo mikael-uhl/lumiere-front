@@ -41,6 +41,7 @@ export type Group = {
 };
 
 export type User = {
+  error: any;
   user_id: UUID;
   first_name: String;
   last_name: String;

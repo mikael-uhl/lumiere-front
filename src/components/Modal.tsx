@@ -6,7 +6,7 @@ type ModalProps = {
   children: ReactNode;
   isVisible: boolean;
   title?: string;
-  onClose: any;
+  onClose?: any;
 };
 
 export default function Modal({
@@ -21,9 +21,11 @@ export default function Modal({
       <div className={styles.model_container}>
         <div className={styles.header}>
           <div className={styles.title}>{title}</div>
-          <div className={styles.close_item} onClick={onClose}>
-            <CloseRoundedIcon />
-          </div>
+          {onClose && (
+            <div className={styles.close_item} onClick={onClose}>
+              <CloseRoundedIcon />
+            </div>
+          )}
         </div>
         <div>{children}</div>
       </div>

@@ -30,11 +30,20 @@
   justify-content: center;
 }
 
-.profile_image {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 50%;
+.edit_profile {
+  width: 150px;
+  background-color: gray;
+  height: 20px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.edit_profile:hover {
+  background-color: rgb(71, 71, 71);
 }
 
 .info_container {
@@ -72,5 +81,9 @@
 
   .followers {
     padding-left: 0;
+  }
+
+  .edit_profile {
+    height: 30px;
   }
 }
